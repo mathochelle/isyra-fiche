@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kurozova Isyra</title>
+
+<style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #111, #444);
+  color: white;
+}
+
+/* NAVBAR */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background 0.3s ease,
+    opacity 0.4s ease,
+    transform 0.4s ease;
+
+  z-index: 1000;
+
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.navbar nav {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.navbar nav a {
+  margin: 0;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  position: relative;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.60);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  opacity: 1;
+  transform: translateY(0);
+}
+/* SECTIONS */
+
+section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.scramble {
+  cursor: pointer;
+}
+
+/* HOME */
+
+/* GAME MENU */
+
+#home {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-left: 10%;
+
+  background:
+  linear-gradient(
+    to right,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.15)
+  );
+}
+
+.game-title {
+  font-size: 4rem;
+  margin-bottom: 50px;
+
+  color: white;
+  text-shadow:
+  0 0 10px rgba(255,255,255,0.3);
+}
+
+.menu-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.menu-item {
+  position: relative;
+
+  color: white;
+  text-decoration: none;
+
+  font-size: 2rem;
+  font-weight: bold;
+
+  width: fit-content;
+
+  transition: 0.3s;
+}
+
+.menu-item::before {
+  content: "▶";
+  opacity: 0;
+
+  position: absolute;
+  left: -30px;
+
+  transition: 0.3s;
+}
+
+.menu-item:hover {
+  transform: translateX(10px);
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+.menu-item.active::before {
+  animation: pulse 0.8s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(4px);
+  }
+}
+.menu-item.hovered {
+  transform: translateX(10px);
+}
+
+.menu-item.hovered::before {
+  opacity: 1;
+}
+
+/* IDENTITE */
+
+#about {
+  position: relative;
+  overflow: hidden;
+  min-height: 300vh;
+
+  background: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pixelCanvas {
+  width: 100%;
+  height: 100vh;
+  display: block;
+}
+
+/* REVIEWS */
+
+#reviews {
+  display: block;
+  padding: 0;
+}
+
+.stack {
+  position: relative;
+  height: 300vh;
+}
+.panel1{
+  z-index:1;
+}
+
+.panel2{
+  z-index:2;
+}
+.personality-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:120px;
+
+  width:100%;
+}
+
+.personality-image{
+  width:400px;
+  border-radius:12px;
+
+  opacity:0;
+
+  transform:translateY(-600px);
+
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+}
+
+.personality-text{
+  width:500px;
+
+  opacity:0;
+
+transform:translateY(600px);
+
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+}
+
+.panel2.active .personality-image{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.panel2.active .personality-text{
+  opacity:1;
+  transform:translateY(0);
+}
+.panel3{
+  z-index:3;
+  background:white;
+}
+.panel {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 3rem;
+}
+
+#reviews {
+  background: #444;
+}
+
+#contact {
+  background: #555;
+}
+
+#plus {
+  background: #666;
+}
+.memory-space {
+  position: absolute;
+  top: 120vh;
+  left: 0;
+
+  width: 100%;
+  height: 150vh;
+
+  pointer-events: none;
+}
+
+.memory {
+  position: absolute;
+
+  pointer-events: auto;
+
+  transition:
+    transform .8s ease,
+    left .8s ease,
+    top .8s ease,
+    opacity .8s ease;
+
+  transform-style: preserve-3d;
+}
+
+.memory img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  border-radius: 12px;
+}
+
+.large {
+  width: 350px;
+}
+
+.small {
+  width: 180px;
+}
+.large:nth-child(1){
+  left:10%;
+  top:10%;
+}
+
+.large:nth-child(3){
+  left:60%;
+  top:35%;
+}
+
+.large:nth-child(5){
+  left:25%;
+  top:80%;
+}
+
+.small:nth-child(2){
+  left:70%;
+  top:5%;
+}
+
+.small:nth-child(4){
+  left:80%;
+  top:90%;
+}
+.memory-text {
+  position: absolute;
+  inset: 0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:30px;
+
+  opacity:0;
+
+  background:rgba(0,0,0,.7);
+
+  transition:.5s;
+}
+.memory.large {
+  cursor: pointer;
+}
+
+.memory.large:hover {
+
+  transform: scale(1.25);
+
+  z-index: 999;
+}
+
+.memory.large:hover .memory-text {
+  opacity:1;
+}
+@keyframes float {
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-20px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+.memory {
+  animation: float 6s ease-in-out infinite;
+}
+.memory:nth-child(2){
+  animation-delay:1s;
+}
+
+.memory:nth-child(3){
+  animation-delay:2s;
+}
+
+.memory:nth-child(4){
+  animation-delay:3s;
+}
+
+.memory:nth-child(5){
+  animation-delay:4s;
+}
+#pixelCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.memory-space {
+  position: absolute;
+  top: 130vh;
+  left: 0;
+
+  width: 100%;
+  height: 150vh;
+
+  z-index: 10;
+}
+.memory img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+
+  transition: transform .4s ease;
+}
+.memory.large:hover img {
+  transform: scale(1.03);
+}
+.memory.large {
+  width: 350px;
+  z-index: 30;
+}
+
+.memory.medium {
+  width: 220px;
+  opacity: 0.65;
+  z-index: 20;
+}
+
+.memory.small {
+  width: 140px;
+  opacity: 0.35;
+  z-index: 10;
+}
+.apparence-wrapper{
+  display:flex;
+  align-items:center;
+  gap:100px;
+}
+
+.apparence-text{
+  width:350px;
+  color:white;
+}
+
+.apparence-text h2{
+  font-size:2.5rem;
+  margin-bottom:20px;
+}
+
+.apparence-text p{
+  font-size:1.1rem;
+  line-height:1.6;
+}
+
+.apparence-slider{
+  position:relative;
+  width:900px;
+  height:500px;
+  perspective:1500px;
+}
+
+.slide{
+  position:absolute;
+
+  width:350px;
+
+  top:50%;
+  left:50%;
+
+  border-radius:12px;
+
+  transition:
+    transform .5s ease,
+    opacity .5s ease;
+
+  transform-style:preserve-3d;
+  
+  filter: brightness(1);
+}
+
+.panel{
+  position:sticky;
+  top:0;
+
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.panel1{
+  z-index:1;
+  background:#111;
+}
+
+.panel2{
+  z-index:2;
+  background:#222;
+}
+.personality-text{
+  width: 500px;
+
+  font-size: 1rem;
+  line-height: 1.8;
+
+  color: white;
+}
+
+.personality-text h2{
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.personality-text p{
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.panel3{
+  z-index:3;
+  background:white;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding-top:100px;
+  box-sizing:border-box;
+}
+.puzzle{
+  position:relative;
+  width:900px;
+  height:700px;
+}
+.piece{
+  position:absolute;
+  cursor:grab;
+
+  max-width:280px;
+  height:auto;
+
+  user-select:none;
+  -webkit-user-drag:none;
+
+  touch-action:none;
+}
+
+.piece.locked{
+  pointer-events:none;
+  transition:
+    left .5s ease,
+    top .5s ease;
+}
+/* HALFTONE DÉGRADÉ */
+
+.halftone{
+  position:absolute;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,69,254,0.95) 18%,
+      transparent 20%
+    );
+
+  background-size:18px 18px;
+
+  animation:
+    pulse 8s ease-in-out infinite,
+    drift 14s ease-in-out infinite;
+}
+
+/* coin haut gauche */
+
+.h1{
+  width:650px;
+  height:650px;
+
+  top:-150px;
+  left:-150px;
+
+  opacity:.55;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 20%,
+      transparent 90%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at center,
+      black 20%,
+      transparent 90%
+    );
+}
+
+/* côté droit */
+
+.h2{
+  width:500px;
+  height:700px;
+
+  right:-100px;
+  top:0;
+
+  opacity:.45;
+
+  animation-delay:2s;
+
+  mask-image:
+    linear-gradient(
+      to left,
+      black,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to left,
+      black,
+      transparent
+    );
+}
+
+/* bas centre */
+
+.h3{
+  width:700px;
+  height:400px;
+
+  left:50%;
+  bottom:-120px;
+
+  transform:translateX(-50%);
+
+  opacity:.35;
+
+  animation-delay:4s;
+
+  mask-image:
+    linear-gradient(
+      to top,
+      black,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to top,
+      black,
+      transparent
+    );
+}
+.panel3::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,69,254,.08),
+      transparent 30%,
+      transparent 70%,
+      rgba(0,69,254,.08)
+    );
+
+  pointer-events:none;
+
+  z-index:0;
+}
+/* ==========================
+   WATER RIPPLE
+========================== */
+
+.ripple{
+  position:absolute;
+
+  width:30px;
+  height:30px;
+
+  border-radius:50%;
+
+  border:2px solid rgba(0,69,254,.5);
+
+  opacity:0;
+
+  animation:ripple 8s linear infinite;
+}
+
+/* positions */
+
+.ripple1{
+  left:15%;
+  top:20%;
+}
+
+.ripple2{
+  right:18%;
+  top:30%;
+
+  animation-delay:1.5s;
+}
+
+.ripple3{
+  left:25%;
+  bottom:20%;
+
+  animation-delay:3s;
+}
+
+.ripple4{
+  right:30%;
+  bottom:15%;
+
+  animation-delay:4.5s;
+}
+
+.ripple5{
+  left:65%;
+  top:12%;
+
+  animation-delay:6s;
+}
+
+/* animation */
+
+@keyframes ripple{
+
+  0%{
+    transform:scale(.2);
+    opacity:0;
+  }
+
+  10%{
+    opacity:.6;
+  }
+
+  70%{
+    opacity:.15;
+  }
+
+  100%{
+    transform:scale(8);
+    opacity:0;
+  }
+
+}
+/* ==========================
+   COMBAT
+========================== */
+
+#contact{
+  padding:0;
+  background:white;
+  overflow:hidden;
+}
+
+.combat-container{
+  width:100%;
+  height:100vh;
+  display:flex;
+  position:relative;
+}
+
+/* ==========================
+   CASES
+========================== */
+
+.ability{
+
+  flex:1;
+
+  position:relative;
+
+  background:white;
+
+  border-right:1px solid #e5e5e5;
+
+  overflow:visible;
+
+  cursor:pointer;
+
+  transition:
+    flex .8s cubic-bezier(.77,0,.18,1),
+    opacity .8s ease;
+}
+.ability:hover{
+  z-index:50;
+}
+
+/* fond bleu animé */
+
+.ability::before{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:var(--skill-color);
+
+  transform:scaleX(0);
+
+  transform-origin:left center;
+
+  transition:.55s ease;
+
+  z-index:1;
+}
+
+.ability:hover::before{
+  transform:scaleX(1);
+}
+
+/* ==========================
+   PREVIEW
+========================== */
+
+.preview{
+  position:relative;
+  width:100%;
+  height:100%;
+  z-index:2;
+}
+
+/* numéro */
+
+.number{
+
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  font-size:7rem;
+  font-weight:900;
+  line-height:1;
+
+  color:#111;
+
+  transition:.4s ease;
+
+  z-index:2;
+}
+
+.ability:hover .number{
+  color:white;
+}
+
+/* image */
+
+.skill-image-wrapper{
+
+  position:absolute;
+
+  right:-120px;
+  bottom:0;
+
+  height:85%;
+
+  width:500px;
+
+  z-index:3;
+
+  pointer-events:none;
+}
+
+.skill-image{
+
+  position:absolute;
+
+  right:0;
+  bottom:0;
+
+  height:100%;
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+/* image visible au hover */
+
+.skill-image-main{
+
+  opacity:0;
+
+  transform:translateX(60px);
+}
+
+/* image visible après clic */
+
+.skill-image-open{
+
+  opacity:0;
+
+  transform:
+    translateX(60px)
+    scale(.95);
+}
+
+.ability:hover .skill-image-main{
+
+  opacity:1;
+
+  transform:
+    translateX(-50px)
+    scale(1.08);
+}
+/* titre */
+
+.preview-text{
+
+  position:absolute;
+
+  left:30px;
+  bottom:40px;
+
+  color:white;
+
+  opacity:0;
+
+  transform:translateY(30px);
+
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+
+  z-index:3;
+}
+
+.preview-text h2{
+  margin:0;
+  font-size:2rem;
+}
+
+.preview-text p{
+  margin:8px 0 0;
+  font-size:1rem;
+}
+
+.ability:hover .preview-text{
+
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+/* ==========================
+   DETAIL
+========================== */
+
+.detail{
+
+  position:absolute;
+
+  inset:0;
+
+  padding:120px;
+
+  box-sizing:border-box;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  overflow:auto;
+
+  color:white;
+
+  z-index:5;
+}
+
+.detail h1{
+  font-size:4rem;
+  margin-bottom:30px;
+}
+
+.detail p{
+  font-size:1.2rem;
+  line-height:1.8;
+  max-width:900px;
+}
+
+/* ==========================
+   OUVERTURE
+========================== */
+
+.combat-container.open .ability{
+
+  flex:0;
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+.combat-container.open .ability.active{
+
+  flex:1;
+
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+/* case ouverte */
+
+.ability.active{
+
+  width:100vw;
+}
+
+/* fond bleu permanent */
+
+.ability.active::before{
+
+  transform:scaleX(1);
+
+  transition:none;
+}
+
+/* on garde image + titre visibles */
+
+.ability.active .skill-image{
+
+  opacity:1;
+
+  transform:translateX(0);
+
+  height:70%;
+}
+
+.ability.active .preview-text{
+
+  opacity:1;
+
+  transform:none;
+}
+
+.ability.active .number{
+
+  opacity:.15;
+
+  color:white;
+
+  font-size:14rem;
+}
+.ability.active .skill-image-open{
+
+  opacity:1;
+
+  position:absolute;
+
+  right:8vw;
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:32vw;
+
+  height:auto;
+
+  max-width:700px;
+}
+.ability.active .skill-image-main{
+  opacity:0;
+}
+
+/* description visible */
+
+.ability.active .detail{
+
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+/* désactive les hovers une fois ouvert */
+
+.combat-container.open .ability:hover::before{
+  transform:scaleX(1);
+}
+
+/* ==========================
+   RETOUR
+========================== */
+
+.close-btn{
+
+  position:absolute;
+
+  top:40px;
+  left:40px;
+
+  width:60px;
+  height:60px;
+
+  border:none;
+
+  background:none;
+
+  color:white;
+
+  font-size:2.5rem;
+
+  cursor:pointer;
+
+  z-index:20;
+
+  transition:.3s ease;
+}
+
+.close-btn:hover{
+
+  transform:translateX(-8px);
+}
+.skill01{
+  --skill-color:#360E0E;
+}
+
+.skill02{
+  --skill-color:#541919;
+}
+
+.skill03{
+  --skill-color:#632727;
+}
+
+.skill04{
+  --skill-color:#753B3B;
+}
+
+.skill05{
+  --skill-color:#8A5050;
+}
+/* ==========================
+   LORE
+========================== */
+
+#plus{
+  background:white;
+  color:#111;
+
+  display:block; /* IMPORTANT */
+  padding:0;
+}
+
+.lore-page{
+  height:250vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 8vw;
+
+  box-sizing:border-box;
+
+  overflow:hidden;
+}
+
+/* largeur texte */
+
+.lore-content{
+  width:40%;
+}
+
+.lore-content h2{
+  font-size:3rem;
+  margin-bottom:25px;
+}
+
+.lore-content p{
+  font-size:.95rem;
+  line-height:1.8;
+}
+
+/* image */
+
+.lore-image{
+  width:40%;
+  opacity:0;
+
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+}
+
+.slide-left{
+  transform:translateX(-250px);
+}
+
+.slide-right{
+  transform:translateX(250px);
+}
+
+.slide-top{
+  transform:translateY(-250px);
+}
+
+.slide-bottom{
+  transform:translateY(250px);
+}
+
+.lore-image.visible{
+  opacity:1;
+  transform:none;
+}
+.lore-image img{
+  width:100%;
+  border-radius:12px;
+}
+
+/* alternances */
+
+.lore-page.left{
+  text-align:left;
+}
+
+.lore-page.center{
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 5vw;
+}
+.lore-page.right{
+  flex-direction:row-reverse;
+  text-align:left;
+}
+.lore-image{
+  opacity:0;
+
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+}
+
+.lore-page .lore-image{
+  width:40%;
+}
+
+.lore-page .lore-content{
+  width:40%;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+  <nav>
+    <a href="#home" class="scramble" data-text="Accueil">Accueil</a>
+    <a href="#about" class="scramble" data-text="Identité">Identité</a>
+    <a href="#reviews" class="scramble" data-text="Descriptions">Descriptions</a>
+    <a href="#contact" class="scramble" data-text="Combat">Combat</a>
+    <a href="#plus" class="scramble" data-text="Lore">Lore</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+
+<section id="home" class="game-menu">
+
+  <img src="images/flower.gif" class="hero-img">
+
+  <div class="menu-overlay">
+
+    <h1 class="game-title">
+      KUROZOVA ISYRA
+    </h1>
+
+    <div class="menu-box">
+
+      <a href="#about"
+         class="menu-item scramble"
+         data-text="Nouvelle Partie">
+         Nouvelle Partie
+      </a>
+
+      <a href="#reviews"
+         class="menu-item scramble"
+         data-text="Continuer">
+         Continuer
+      </a>
+
+      <a href="#contact"
+         class="menu-item scramble"
+         data-text="Options">
+         Options
+      </a>
+
+      <a href="#plus"
+         class="menu-item scramble"
+         data-text="Détails">
+         Détails
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- IDENTITE -->
+
+<section id="about">
+
+  <canvas id="pixelCanvas"></canvas>
+
+  <div class="memory-space">
+
+    <div class="memory large">
+      <img src="images/photo1.jpg">
+      <div class="memory-text">
+       KUROZOVA Isyra,
+        Femme,
+        Himaïde/
+        Draconique,
+        80 ans
+      </div>
+    </div>
+
+    <div class="memory small">
+      <img src="images/photo2.jpg">
+    </div>
+
+    <div class="memory large">
+      <img src="images/photo3.jpg">
+      <div class="memory-text">
+        Rebelle vagabonde
+      </div>
+    </div>
+
+    <div class="memory small">
+      <img src="images/photo4.jpg">
+    </div>
+
+    <div class="memory large">
+      <img src="images/photo5.jpg">
+      <div class="memory-text">
+       Originaire de Gahkna
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+
+  <div class="stack">
+
+    <div class="panel panel1">
+
+      <div class="apparence-wrapper">
+
+        <div class="apparence-text">
+          <h2 id="apparenceTitle"></h2>
+          <p id="apparenceDescription"></p>
+        </div>
+
+        <div class="apparence-slider">
+          <img src="images/001apparence.jpg" class="slide">
+          <img src="images/002apparence.jpg" class="slide">
+          <img src="images/003apparence.jpg" class="slide">
+          <img src="images/004apparence.jpg" class="slide">
+          <img src="images/005apparence.jpg" class="slide">
+        </div>
+
+      </div>
+
+    </div> <!-- fermeture panel1 -->
+
+<div class="panel panel2">
+
+  <div class="personality-wrapper">
+
+    <img
+      src="images/001personnalité.jpg"
+      class="personality-image"
+    >
+
+    <div class="personality-text">
+      <h2>"Il n'y a pas de paradis pour que tu t'échappes."</h2>
+
+      <p>
+        Une femme à l'allure douce, calme, presque apainsante pour ainsi dire. Elle garde, malgré ses origines, un très grand respect vis à vis des autres populations ainsi que pour les Volontés. Selon elle, ce sont grâce à elles si ce monde existe aujourd'hui. 
+        Malgré son grand calme et sa douceur en première apparence, Isyra est capable d'actions des plus violentes ou cruelles à l'aide de ses années d'entraînement. Elle a aussi horreur du contact physique, même un effleurement pourrait la mettre à fleur de peau, personne ne sait pourquoi, enfin presque.
+        Elle est apaisante, certes, mais en elle se cache un véritable chaos émotionnel, nottament pour ses propres valeurs. Elle dit haïr l'obession pour la perfection, or, c'est en avançant que l'envie d'exceller la gagne un peu plus chaque jour, c'est une corrosion lente qui l'enferme avec le temps.
+        En réalité, elle se montre sûre d'elle, confiante, mais le fait est, la pauvre est perdue dans le brouillard de son esprit et si cela continue, sa vie ne ressemblera qu'à une lamentable tentative de survivre.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+<div class="panel panel3">
+<div class="puzzle-bg">
+
+  <div class="halftone h1"></div>
+  <div class="halftone h2"></div>
+  <div class="halftone h3"></div>
+
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
+  
+<div class="ripple ripple1"></div>
+<div class="ripple ripple2"></div>
+<div class="ripple ripple3"></div>
+<div class="ripple ripple4"></div>
+<div class="ripple ripple5"></div>
+</div>
+  <div class="puzzle">
+
+    <img src="images/Illustration_sans_titre-1.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-2.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-3.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-4.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-5.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-6.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-7.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+    <img src="images/Illustration_sans_titre-8.png"
+         class="piece"
+         data-x="300"
+         data-y="200">
+
+  </div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+  <div class="combat-container">
+
+    <!-- TECHNIQUE 01 -->
+    <div class="ability skill01">
+
+      <div class="preview">
+
+        <span class="number">01</span>
+
+        <div class="skill-image-wrapper">
+          <img src="images/skill1.png"
+               class="skill-image skill-image-main">
+
+          <img src="images/ichise.gif"
+               class="skill-image skill-image-open">
+        </div>
+
+        <div class="preview-text">
+          <h2>La lame Kurozova</h2>
+          <p>Un sabre légué de génération en génération à chaque héritier direct du possesseur.</p>
+        </div>
+
+      </div>
+
+      <div class="detail">
+
+        <button class="close-btn">←</button>
+
+        <h1>La lame Kurozova</h1>
+
+        <p>
+          Cette arme qui peut sembler annodine au premier regard, est en fait l'objet de bien nombre de disputes, jaloux, envieurs et complots au sein de cette même famille.
+          La lame des Kurozova symbolise la pureté absolue de son porteur, l'ascension à son paroxysme, les valeurs les plus nobles qui soient, en bref, la perfection la plus proche possible qui soit.
+          Elle fut forgée par un ancêtre d'Isyra, un ancêtre lié à une Volonté qui jugeait ses intentions pures et bienveillantes, au profit de tous, comme la lame le promet malgré sa tranche.
+          Or, cette lame a été détournée à des actes et faits bien cruels et odieux par simple volonté de pouvoir et d'excellence, mais sa pureté ne s'estompa guère pour autant.
+          Comment agira son porteur cette fois-ci ?
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- TECHNIQUE 02 -->
+    <div class="ability skill02">
+
+      <div class="preview">
+
+        <span class="number">02</span>
+
+        <div class="skill-image-wrapper">
+          <img src="images/skill2.png"
+               class="skill-image skill-image-main">
+
+          <img src="images/bebe.gif"
+               class="skill-image skill-image-open">
+        </div>
+
+        <div class="preview-text">
+          <h2>Souffle d'Esprit</h2>
+          <p>Rien n'est vraiment fait au hasard.</p>
+        </div>
+
+      </div>
+
+      <div class="detail">
+
+        <button class="close-btn">←</button>
+
+        <h1>Souffle d'Esprit</h1>
+
+        <p>
+          L'aura d'Isyra n'est pas sans pardon, en fait, un simple contact avec peut valoir beaucoup pour les ennemis se trouvant face à elle.
+          Généralement, elle matérialise cette aura autour de sa lame. Cette magie permet, losque l'himaïde porte un coup, d'affliger le corps ou de l'épargner. En revanche, une chose n'est jamais épargnée : l'esprit et la conscience de l'adversaire.
+          Une fois touché, la victime aura des hallucinations, des confusions, des flashs enfouie dans leur esprit qui ressurgissent, tout dépend en fait de l'état de la conscience de son aderversaire et d'elle-même.
+          L'opposant peut vite être amené à une grande vulnérabilité avec un tel jeu mental, un peu comme un châtiment pour tous ses regrets, remords, blasphèmes etc... Néanmoins, cela finit par se répercuter sur la conscience d'Isyra aussi.
+          Son propre esprit est sensible aux réactions face à ses attaques, elle peut ressentir les émotions de ses ennemis, avoir des flashs elle aussi , rien ne lui échappe et cela reste un grand contre-coup pour elle.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- TECHNIQUE 03 -->
+    <div class="ability skill03">
+
+      <div class="preview">
+
+        <span class="number">03</span>
+
+        <div class="skill-image-wrapper">
+          <img src="images/skill3.png"
+               class="skill-image skill-image-main">
+
+          <img src="images/fah.gif"
+               class="skill-image skill-image-open">
+        </div>
+
+        <div class="preview-text">
+          <h2>L'agilité</h2>
+          <p>Ne te repose jamais sur ton arme.</p>
+        </div>
+
+      </div>
+
+      <div class="detail">
+
+        <button class="close-btn">←</button>
+
+        <h1>L'agilité</h1>
+
+        <p>
+          Isyra porte une grande importance à savoir agir et réagir rapidement, sa souplesse est donc un excellent atout pour cela. 
+          Il est bien de savoir manier son arme, mais sans maîtriser ses appuis, sa détente, sa vitesse, ses réflexes, tout cela ne sert plus à rien.
+          La jeune femme s'est alors entraînée afin que son corps obtienne une agilité déconcertante et des réflexes remarquaqles que toute sa famille ne pouvaient s'empêcher d'acclâmer tant cela était spéctaculaire, ses mouvements étaient légers, doux, rapides, mais plus dangereux qu'ils ne le laissaient paraître.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- TECHNIQUE 04 -->
+    <div class="ability skill04">
+
+      <div class="preview">
+
+        <span class="number">04</span>
+
+        <div class="skill-image-wrapper">
+          <img src="images/skill4.png"
+               class="skill-image skill-image-main">
+
+          <img src="images/oh.jpg"
+               class="skill-image skill-image-open">
+        </div>
+
+        <div class="preview-text">
+          <h2>Le Tribunal des Âmes</h2>
+          <p>L'abîme des mille visages.</p>
+        </div>
+
+      </div>
+
+      <div class="detail">
+
+        <button class="close-btn">←</button>
+
+        <h1>Le Tribunal des Âmes</h1>
+
+        <p>
+          Quand Isyra utilise son aura autour de sa lame, plus elle frappe, plus sa lame récolte d'énergie, de lamentations, de regrets... Sa lame pèse de plus en plus jusqu'à en devenir très peu voir impossible à manier pour son utilisatrice, cette lame représente en quelques sortes la charge mentale de ses ennemis.
+          C'est quand la lame devient trop lourde pour elle qu'elle libère cette attaque qu'elle déteste plus que ses ennemis. Une fois sa lame débordante d’énergie psychique (la vitesse d’hausse dépend encore une fois de la personne face à elle), Isyra devient un instant invisible aux yeux des victimes touchées par sa lame, créant un « territoire » , délimité et dure en fonction de l’énergie contenue dans la lame. Dès cet instant, nul ne peut en sortir, ils ne peuvent qu'affronter leurs péchés sous forme d'illusions bien trop réelles car rien n'est plus profond ni plus éternel que l'envie et l'inimitié. L'Homme vit dans les ténèbres de ces sentiments tandis qu'il lutte contre son destin pécheur. Ce septième sceau ne se terminera que lorsque tous les péchés seront expiés de sa lame mais Isyra reste néanmoins, elle aussi, consumée par les hallucinations des autres, elle ressent tout, l'empêchant bien souvent de se mouvoir dans cette situation.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- TECHNIQUE 05 -->
+    <div class="ability skill05">
+
+      <div class="preview">
+
+        <span class="number">05</span>
+
+        <div class="skill-image-wrapper">
+          <img src="images/skill5.png"
+               class="skill-image skill-image-main">
+
+          <img src="images/misa.jpg"
+               class="skill-image skill-image-open">
+        </div>
+
+        <div class="preview-text">
+          <h2>L'impureté</h2>
+          <p>Le sang maudit bénédicteur.</p>
+        </div>
+
+      </div>
+
+      <div class="detail">
+
+        <button class="close-btn">←</button>
+
+        <h1>L'impureté</h1>
+
+        <p>
+          Dans une éducation et des valeurs liées à la pureté, c'est l'impureté elle-même qui vient sauver la pauvre enfant.
+          Elle ne la sauve pas seulement... Le sang de Draconique qui lui a été donné lui a aussi fait don d'une vieillesse ralentie mais aussi de sens extrêmements développés sans parler de l'aura plus pesante et sa prestance qui sont venues avec.
+          Grâce à ce sang inconnu qui coule dans ses veines, Isyra est capable de percevoir un geste (dangereux, menaçant) quelques micro secondes avant que cela ne se produise (comme un 6ème sens) , elle ressent mieux les intentions de ses adversaires, leurs hésitations, les réactions instinctives...
+          Malheureusement il n'y a guère que des avantages, un draconique est sensé avoir un corps capable de supporter et maintenir tout leur flux magique, or Isyra non, ayant pour effet de rendre chaque utilisation de sa magie extrêmement douloureuse dû a son corps non préparé pour tant d'abondance.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="plus">
+
+  <div class="lore-page left">
+
+    <div class="lore-content">
+      <h2>La Bénédiction Tragique</h2>
+
+      <p>
+        761, cette année-là naquit celle que l'on nommera par la suite Isyra. Une neige incessante s'abattait sur les terres d'Arcadia, enveloppant la région d'un épais voile blanc qui dissimulait presque entièrement le domaine isolé de la famille Kurozova.
+        La famille Kurozova, il faut le dire, est une sorte de dynastie sans pour autant contrôler d'autres personnes si ce n'est leur propre famille. Aujourd'hui, leurs valeurs sont très ancrées dans l'avis de prendre en pitié les autres races, comme des êtres inférieurs. D’origine très religieuse, lors de la rebellion contre la divinité liée aux himaïdes, la dynastie a pris un tournant et maintenant cultive une obsession malsaine envers la perfection absolue, comme s’ils voulaient atteindre le niveau des divinités tout en les haïssant.
+</p>
+<p>
+        L'enfant reçut ainsi donc le nom d'Isyra, un prénom choisi dès les premières semaines de grossesse par sa mère,la seconde épouse de Tomomi, une vampire d'origine russe. Son père, quant à lui, était d'origine japonaise, héritage que leur nom de famille symbolisait au mieux.
+        Or, lorsque l'on crut à la mise au monde d'un être angélique, une tragédie tomba soudainement ; sa mère succomba peu après les premières contractions.
+        Alors tout le monde se dit que tout était fini, le père, Tomomi, lui, crut avoir perdu la femme avec qui il comptait tout construire mais aussi leur pauvre enfant.
+        Médecins, sage-femmes, serviteurs... tous baissèrent leurs regards, tous incapables de regarder le visage du grand perdant, le visage de celui qui avait la plus grande hâte face à ce jour qui se devait d'être formidable.
+        Le silence régnait, seul le bruit des outils précotionneusement rangés par les médecins venait déranger cette atmosphère qui n'en devenait que plus lourde.
+        </p>
+        <p>
+        Tomomi ne lâcha pas une seconde, cela-dit, la main de sa femme. Au contraire, il la resserait davantage, comme pour la retenir, l'empêcher de s'en aller, il refusait un tel sort pour la femme qu'il aimait tant.
+        Les minutes passaient presque comme des heures, les médecins tentèrent de le raisonner, mais rien n'y faisait, se séparer de sa femme voulait dire la laisser partir à jamais.
+        Le pauvre homme laissa échapper une larme. Quand cette larme fut tombée sur le drap souillé, un cri retenti. Lui et les médecins n'osèrent pas y croire, c'étaient bien des cris de bébé, l'enfant était vivante et avait réussie, on ne sait comment, à naître de ce corps.
+        Sans attendre plus longtemps, le père pris dans ses bras l'enfant miraculée, son héritière, son trésor à lui, rien n'y personne ne pourrait lui retirer cette fois-ci.
+      </p>
+    </div>
+
+    <div class="lore-image slide-left">
+      <img src="images/lore1.jpg">
+    </div>
+
+  </div>
+
+  <div class="lore-page center">
+
+    <div class="lore-content">
+      <h2>La Seconde Tragédie</h2>
+
+      <p>
+        769, la petite savait à présent marcher. Malgré le drame qui s'était produit, l'héritière des Kurozova ne manqua de rien, elle allait jouer avec les enfants du village le plus proche, s'entraînait même avec son oncle, Shin'en.
+        Les Kurozova étaient une famille noble, prospère et respectée valorisant au mieux leurs sangs qui n'étaient que du sang d'himaïde ou de vampire. Leur demeure se trouvait loin de toute agitation, sans être pour autant coupée du village voisin. Son père veillait sur elle avec une attention presque excessive, déterminé à la protéger de tout malheur.
+        Magnus, cet homme déjà si réputé, venait souvent s'occuper de cette dernière, devenant rapidement une personne adorée de Tomomi comme d'Isyra.
+         Lors de leur première rencontre, Isyra était quelque peu effrayée par son allure ; un grand homme avec une masse musculaire plus que surprenante.
+        Il suffit de quelques temps à peine pour que l'enfant ne prenne confiance et suive Magnus partout où il allait, cet homme avit un vrai esprit fraternel et protecteur. <br>
+        Par exemple, il n'était pas rare que le jeune homme ne s'amuse à raconter l'histoire vécue avec ses conquêtes de manière fantaisique, du style le chevalier et la princesse. Chacune de ses histoires ne faisaient qu'émerveiller cette dernière.
+        D'autres fois, ils jouaient ensemble, Magnus prenant la petite sur ses épaules, se laissant redevenir enfant l'espace d'un instant. Parfois, c'était de petites bagarres où le grand homme faisait toujour mine de se faire battre par la plus jeune histoire de la rendre heureuse.
+        Si elle l'avait pu, elle aurait suppllié de rester avec lui, juste un peu plus longtemps, juste un instant. <br>
+        Shin'en, son oncle, était lui aussi très proche de l'enfant. La veille, par exemple, l'oncle entraîna sa nièce au combat muni d'épées en bois, une méthode simple mais relativement efficace. Elle s'acharnait à réussir, il la fit tomber plus d'une fois pourtant, mais tout en gardant ce sourire aimant et chaleureux. Quand Isyra tombait, ce n'était jamais vers Tomomi qu'elle tournait les yeux en premier, mais vers Shin'en. Alors elle se relevait, elle fonçait de nouveau dans un seul et unique but : le rendre fier.
+        Lorsqu'elle para un coup pour la première fois, Shin'en sourit, pas avec empathie, mais avec fierté.
+		Pourtant, pendant une fraction de seconde, quelque chose traversa son regard,
+		quelque chose qu'Isyra était bien trop jeune pour comprendre.
+		A l'issue de cce même entraînement, l'oncle ramassa ses affaires, saluant sa nièce avant de ne lui tourner le dos. Dans son élan, Isyra couru vers lui maladroitement, suppliant pour qu'il l'attende. <br>
+		" Shin'en ! "<br>
+		L'homme se retournait, le visage surpris.<br>
+		" Je te promets de devenir aussi forte que toi à l'avenir. " <br>
+		Un regard franc de ses yeux bleus ciel, un regard non pas d'ambition, mais d'admiration.<br>
+		" Tu me dépasseras." <br>
+		Sa voix était calme.
+		Trop calme.
+		Comme s'il constatait un fait plutôt qu'il ne formulait un encouragement.
+		C'était là sa seule et unique réponse. Il n'avait pas souri, ce jour là.
+		
+        L'enfant d'à peine 8 ans était vouée à un futur glorieux, des plus enviables, mais elle, elle n'avait pas l'air d'y prêter grande attention... Tout ce besoin de pouvoir, cette envie de devenir égal aux Volontés, ça ne valait rien à ses yeux, elle détestait même cette idée de vouloir s'élever au rang de divinité, mais peu importe, qui se préoccuperait de ses choix de vie ?
+        
+        C'était un jour doux et calme, la neige gardait le dessus sur les environs, mais le soleil était tout de même présent, apportant une légère vague de chaleur sur le pays.
+        Les Miscanthus sinensis blancs épousaient les mouvements et souffles du vent, entrechoquant leurs pétales semblables à des plumes, dessinant à l'aide de leurs reflets comme une sensation de vague tout autour du domaine.
+        Isyra revenait à peine du village voisin, couverte de légères égratignures à cause de son manque d'attention lorsqu'elle joue. Elle traversait le champ de mischanthus, perturbant presque leur mélodie liée au vent, poussait de son chemin ces fleurs à perte de vue jusqu'à finalement voir la première marche qui menait à son domaine, son chez-soi.
+        Pieds-nus, chaussures en main afin de ne salir aucune marche, ses pas s'écrasaient contre la pierre légèrement voilée de neige. Son souffle se faisait court, ses poumons ne suivant plus toute son énergie dépensée dans la journée, mais son sourire restait plaqué sur son visage, ne pensant qu'à retrouver son père, son modèle, sa source d'affection.
+        Après avoir finalement monté toutes les marches en un temps record pour un si jeune âge, elle se précipita jusqu'aux appartements de son père, tirant d'une traite la cloison coulissante de la pièce, prête à sauter dans les bras de son père adoré.
+        " Papa !-"
+        Un silence glaciale s'imposa laissant place au chant des fleurs s'entrechoquant comme seule source de son.
+        Le sourire de l'enfant tomba peu à peu, une sensation bizarre sous ses pieds, son excitation dans les yeux chuta tout comme son rythme cardiaque. Son regard resta figé sur une chose, une seule : le corps de son père allongé sur le sol. Les pieds de la petite fille baignaient à présent dans un bain écarlate, le regard livide de Tomomi fixait le plafond.<br>
+        "...Hein ?"
+      </p>
+    </div>
+    <div class="lore-image slide-top">
+      <img src="images/lore2.jpg">
+    </div>
+  </div>
+
+  <div class="lore-page right">
+
+    <div class="lore-content">
+      <h2>Le Crépuscule des Liens</h2>
+
+      <p>
+        774, 13 ans à présent, la petite était sous la garde de son oncle désormais. L'assassinat de son père, lui, restait encore un mystère que nul n'avait su résoudre, enfin, c'est ce que l'on racontait à la fillette.
+        Personne de la famille ne semblait plus préoccupé que ça, Shin'en esquivait même le sujet avec elle, lui répétant que " Chaque homme poursuit son rêve. Chaque homme est torturé par son rêve. " avec ce même sourire compréhensif cachant bien plus qu'il ne le laissait percevoir. 
+      </p>
+      
+      <p>
+        Un soir d'hiver, Shin'en avait emmené sa nièce en excursion dans les hautes montagnes avec lui sous prétexte que l'environnement ne serait que bénéfique pour son entraînement.
+        Le paysage était beau, paisible, presque digne de se retrouver dans un livre de fantaisie tant l'endroit était incroyable. Les flocons se posaient avec douceur au sol, recouvrant davantage l'épaisse mousse de neige recouvrant déjà chaque montagnes ne laissant que les troncs des arbres alentours identifiables.
+        L'oncle et sa nièce marchèrent longuement, s'engouffrant de plus en plus dans les dents des cieux, jusqu'à ce que leurs anciennes traces de pas ne disparaissent, recourvertes par les flocons suivant.
+      </p>
+      <p>
+		L'homme s'arrêta net, faisant grincer la neige sous ses bottes. Il resta là un moment, comme figé tandis qu'Isyra se questionnait un peu plus chaque seconde avant de n'appeler son nom.
+		"Oncle Shin'en ? Quelque chose ne va pas ?"
+		La tête du mentor se tourna lentement, bien trop lentement, comme si quelque chose d'horrible venait ou allait se produire, mais quoi? Qu'est-ce qui pouvait bien se passer ? Pourquoi un silence aussi soudain et inexpliqué ?
+		Toutes ces pensées se turent en un instant. L'instant de voir <i>ce visage</i>, le visage le plus froid que l'on puisse voir de sa vie, les yeux contenant une rage sans pareil, des traits serrés, presque figés. Cet homme n'était plus son oncle.
+		Il tourna les talons puis s'avança, écrasant la neige sous ses pas lourds, dégainant son katana, la mâchoire serrée, le regard fixé sur le visage apeuré de l'enfant.
+		" C'est toi qui a cherché tout ça, toi et ta gueule d'ange. " La lame trancha l'air, laissant un bruit rapide et aigüe dans le vent, manquant de peu Isyra, mais lui laissant tout de même une entaille sous l'oeil gauche, remontant jusqu'au nez.
+		La pauvre ne comprenait pas, pourquoi diable son deuxième père se comportait-il ainsi du jour au lendemain ? Qu'avait-elle fait?
+		" J'aurais dû m'en douter depuis le jour maudit de ta naissance, tu n'es pas légitime à cette famille, tu n'as ni valeurs ni principes que nous partageons. "
+		Un nouveau coup scinda le paysage une fois de plus, Isyra réussi à l'esquiver de justesse, se jetant d'un pas sur le côté, n'arrivant même pas à prononcer un quelconque mot, tout ce qui sortait de sa bouche n'était qu'un gémissement apeuré.
+		Plus le temps allait, plus le corps de Shin'en semblait allourdit par cette dite rancoeur.<br>
+		"Mais enfin, oncle Shin'en, que veux-tu dire ? <br>
+		- Ce que je veux dire ?! Ce que je veux dire, c'est que tu n'aurais jamais dû exister, J'AURAIS dû être l'héritier, tu n'as aucun rêve, aucune ambition, RIEN, tout comme ton père. Mais d'ici l'aube, tu l'auras rejoins et JE serai à la tête de la famille, je reprendrai ma place et mon but."<br>
+		Sans même avoir le temps de riposter, l'oncle se jeta sur la fille de son frère. Elle, par instinct, dégaina désesperement la lame des Kurozova, la pointant en la direction de Shin'en, mais il était trop tard. Isyra tomba avec son oncle, tous deux amortis dans leur chute par les coussins de neige sur le sol. La jeune fille s'agrippait à la poignée de son arme, tremblant de peur et d'effroi, le visage figé face à celui haineux de son oncle.
+		Une goutte de sang s'échappa de la bouche de Shin'en, tâchant la blancheur de sa peau d'une couleur écarlate familière à la fillette, avant qu'il ne lâche un étouffement d'agonie. Les yeux de l'himaïde se posèrent plus bas, vers le diaphragme de ce dernier... Il était bel et bien transpercé, par sa lame à elle, l'acier blanc maintenant, lui aussi, corrompu d'écarlate s'étalant sur le chemisier de son oncle, coulant jusqu'aux mains tremblantes de la fille.
+		</p>
+		<p>
+		Les yeux de l'aîné vacillèrent, le visage pâle, une vision que nul ne peut décrire, il semblait tétanisé, horrifié de ce qu'il lui arrivait. <br>
+		" Tu n'as fait qu'apporter le malheur dans cette famille... " là n'était que ces derniers mots avant de succomber à l'agonie, le poids mort de corps glissa le long de l'acier, étouffant lentement le corps plus fragile de la nièce.
+		Un instant, Isyra resta figée, le souffle court, les pupilles écarquillées, fixant le ciel par dessus l'épaule de son oncle à présent défunt, l'esprit vide elle n'arrivait plus à réfléchir à quoi que ce soit.
+		Manquant d'air dans ses poumons, son corps d'instinct fit rouler le cadavre sur le côté, ce libérant de l'étouffement. Soudain, alors qu'elle comptait s'asseoir, une vive douleur la pris au niveau du foi, reprenant immédiatement ses esprits à l'aide de cette douleur. C'est là qu'elle vit cette même tâche pourpre, pas sur Shin'en, mais sur son habit allant même tâcher et souiller la blancheur hivernale sous son corps.
+		Comme si son corps avait finalement compris, sa vision devint trouble, incapable de discerner des formes, seulement des couleurs floues, des bruits sourds tout autour d'elle, comme une sensation d'être tombée dans l'eau et de s'enfoncer peu à peu, son corps devenant lourd à porter, puis, plus rien. Elle ne sentit que sa joue brûler au contact de ce duvet glacé.
+      </p>
+    </div>
+
+    <div class="lore-image slide-right">
+      <img src="images/lore3.jpg">
+    </div>
+
+  </div>
+  <div class="lore-page left2">
+
+    <div class="lore-content">
+      <h2>La Renaissance Impure</h2>
+
+      <p>
+		Des minutes, des heures, des jours, peut-être des semaines ou des mois passèrent après le dernier péché de Shin'en, personne ne le savait, sauf une. <br>
+		Une lumière vive, l'impression que le monde tourne sous son corps tremblant à cause du froid. <br>
+		Un battement... <br>
+		Puis deux... <br>
+		Une phrase résonna soudainement : <br>
+		" Il est mort en faisant ce qu'il voulait, pas vrai ? Je parie qu'il était heureux. " <br>
+		avant de disparaître en écho dans l'âme.
+		Une impression de se faire planter plus d'une centaine de fois la poitrine, quelque chose respirait.
+		La tête prête à exploser, des bruits, du mouvement, une voix, des voix... <br>
+		</p>
+		<p>
+		Elle ouvrit les yeux.<br>
+      </p>
+      <p>
+		Un plafond blanc, des lumières beaucoup trop agressives lors d'un réveil... Où était passé tout ce paysage enneigé ? <br>
+		Elle cligna plusieurs fois des yeux, essayant tant bien que mal de rendre sa vue plus nette, de pouvoir distinguer ne serait-ce que différentes formes.
+		Une fois la vue devenue bien plus nette, ses yeux bougèrent immédiatement, cherchant à comprendre où elle se trouvait, depuis quand...
+		Son regard parcourut chaque recoin de la pièce : une table d'opération, des murs et un sol d'un blanc peu naturel sans oublier ces nombreuses lumières magiques qui n'aidaient en rien à son confort.<br>
+		A peine eût-elle le temps de comprendre ce qui se passait que la voix d'un homme retentit : <br>
+		" La dernière s'est réveillée, prévenez-la. " <br>
+		Des groupes d'hommes dans des tenues similaires se formèrent alors, un partant hors de vue tandis que les autres se répartissaient avec ce qui semblait être des patients.
+		Isyra ne se préoccupait pas grandement de qui ces gens pouvaient être, elle se préoccupait surtout de pouvoir bouger mais en vain, tous ses membres étaient engourdis. Mais plus encore que l'engourdissement de ses membres, quelque chose en elle semblait différent, faux, comme si son propre corps ne lui appartenait plus.
+		Quand un des hommes s'était finalement approché de la fillette, c'est là qu'elle put finalement voir son reflet dans les lunettes de ce dernier. <br>
+		Un visage pâle et maigre marqué d'une fine cicatrice, mais surtout... Des iris rouges ? <br>
+		Le coeur manqua un battement, une sueur froide le long de son dos. <br>
+		N'étaient-ils pas bleus ?
+      </p>
+      <p>
+		Avant qu'elle ne puisse faire une quelconque remarque, des bruits de pas retentirent depuis sa gauche. Oubliant ses engourdissements, comme par méfiance, Isyra se redressa rapidement, l'inconnu à sa droite sursauta aussi tôt comme si elle n'était pas sensée se rétablir aussi vite.
+		Un nouveau visage s'offrit à elle : celui d'une femme, une femme qui semblait heureuse ? <br>
+		Cette dernière se présenta à Isyra, comme si ça l'importait, mais malgré tout elle retint son nom : <i>S</i>. <br>
+		Elle n'écoutait pas vraiment ce que cette S lui racontait, n'entendant que des bruits sourds et étouffés comme si elle s'était volontairement bouché les oreilles. Seulement, une phrase était apparue nette jusqu'à ses oreilles : <br>
+		" Le sang de Draconique a pu te sauver. "
+      </p>
+      <p>
+		" Quoi ? "
+      </p>
+      <p>
+		C'est tout ce qu'elle avait réussi à dire mais aussi tout ce qu'elle pensait. <i>Comment ça du sang de draconique ?</i> <br>
+		Ce n'était pas possible. Qu'allait penser sa famille ? Qu'allait-elle devenir ? Pourquoi mêler deux sang différents ? Pourquoi faire ça ? <br>
+		Son regard se bloqua sur un point inexistant, sa vision s'obstruant peu à peu, le souffle de plus en plus court et rapide, des frissons le long de la colonne vertébrale à chaque inspiration, <i>une sensation de dégoût. </i><br>
+		Qu'ont-ils fait à son corps ? Qu'ont-ils touché, remplacé ? <br>
+		Qu'est-ce qui lui appartenait encore ? <br>
+		Ses mains vinrent se refermer désespéremment, chacune sur le bras qui lui était opposé, les ongles plantés dans la peau seulement désireux d'arracher cette dernière. 
+		Chaque doigt glissa lentement, traçant le tour de ses bras en laissant cette trace écarlate sous chacun d'eux, contrastant drastiquement avec la blancheur de sa peau.
+      </p>
+      <p>
+		<i>C'est répugnant.</i>
+      </p>
+    </div>
+
+    <div class="lore-image slide-right">
+      <img src="images/lore4.jpg">
+    </div>
+
+  </div>
+  <div class="lore-page center">
+
+    <div class="lore-content">
+      <h2>Le paradis ?</h2>
+
+      <p>
+        Trop de temps avait passé. Combien exactement ? Elle ne le savait pas, elle ne comptait plus les jours mais les heures tant elle rêvait de sortir de cet endroit.
+        A première vue il serait légitime de se demander ; pourquoi ? S se comportait presque en mère avec Isyra et puis, elle l'avait sauvée. <br>
+        La jeune hybride s'en fichait complètement, au contraire, cela avait même pour effet de la rendre au paroxysme du dégoût envers cette femme.
+        En revanche, une chose lui était agréable : la présence de cette entité dont elle ne pouvait voir que la silhouette.
+        Cette même entité était avec elle depuis son réveil, au moins. Elle aidait la pauvre Isyra à vivre avec les hallucinations que lui causaient ses pouvoirs à cause de ses traumatismes, elle lui apprenait à mieux les gérer, ne plus les craindre. C'était comme un ami imaginaire en qui l'on pouvait se confier sans crainte.
+        Chaque jour elle se forçait à faire mine de s'intéresser aux lieux et ce qu'il s'y tramait mais en réalité elle comptait les portes, les scientifiques, les issues, tout ce qui serait utile de savoir. 
+        Néanmoins, pour une fille de son âge, tout ce qui se passait là-bas n'était que traumatique. Des sujets réussis comme ratés, amenant à des formes abstraites que le conscient aimerait ne pas connaître tant ces formes sont dérangeantes et horrifiantes pour l'esprit.
+        Tout la répugnait dans ces lieux, tout était trop "propre", tout était trop pesant, surtout la présence de cette femme.
+      </p>
+      <p>
+		Un soir, l'occasion pour une fuite se présentait enfin, peut-être une occasion un peu trop évidente mais Isyra n'en avait que faire : il fallait sortir d'ici au plus vite.
+		Le moment venu, tout s'était passé très vite. Quasiment aucun obstacle en vue, personne pour la retenir ou surveiller : tout était presque parfait pour une fuite, comme si quelqu'un avait volontairement laissé une porte ouverte.<br>
+		Evidemment, elle réussi à sortir de cet enfer sans trop de soucis. <br>
+		Mais quelque chose manquait, plutôt quelqu'un. <br>
+		La petite se retourna, s'étant pourtant promis de ne pas le faire. L'entité était là, debout, se pieds ne dépassant pas la sortie. Elle ne bougeait pas.<br>
+		" Tu ne viens pas avec moi ?<br>
+		- Je ne peux pas.<br>
+		- Mais pourquoi ?<br>
+		- C'est ma maison."<br>
+		Cette simple réponse lui suffit. Elle ne put qu'acquiescer, regrettant de devoir partir en laissant son ami derrière elle. Les deux s'adressèrent un dernier signe de la main, mais qui laissait entendre que des retrouvailles pourraient bien arriver tôt ou tard, ce n'étaient en aucun cas des adieux.
+		La petite Isyra tourna alors le dos à cette dernière, avançant fermement sans se retourner, le regard droit devant elle prêt à ne rien la laisser flancher.
+		Passer d'un lieu renfermé, entouré de choses uniquement magiques et synthétiques à une nature pure et absolue. De l'air frais, le bruit des branches s'entrechoquant à cause de la brise, le ciel surmontant le paysage, c'était un retour au paradis.
+      </p>
+      <p>
+		Isyra marchait le long d'un chemin entouré d'arbres formant une sorte de couloir sans fin, où elle ne pouvait voir le bout, seulement ce qui se trouvait autour d'elle dans une certaine périphérie.
+		Le sol et les arbres étaient, eux, éclairés par la lune resplendissante qui se trouvait au dessus d'elle. Le ciel était d'un bleu grisâtre si apaisant qu'en le regardant ses paupières se permettaient un léger relâchement, apaisées.
+		Peu de choses étaient bien visibles, mais les étoiles et cette même pleine lune suffisaient largement à l'enfant, ça lui suffisait pour avancer.
+		L'épuisement mental fini par faire surface : ses jambes étaient faibles, à peine capables de soutenir son poids, sa tête brûlait comme si un incendie y avait lieu, tout son corps lâchait prise, elle devait se reposer. <br>
+		<i>Où vais-je aller ?<br>
+		N'était-ce pas mieux de rester enfermée là-bas ? <br>
+		Ce serait plus simple d'attendre la mort ici, en fait.<br>
+		Il ne reste plus de raison. <br>
+		Où aller ? <br>
+		Vers qui ? <br>
+		Magnus m'accepterait peut-être, lui... Si seulement il était là.<br>
+		Je ne suis plus qu'une créature des abysses... <br>
+		En fait, il n'y a peut-être pas de paradis où je puisse m'échapper.
+		</i> 
+		</p>
+		<p>
+	    Malgré ces pensées, son corps ne s'arrêtait pas, non, ses jambes avançaient comme par magie, son corps refusait de s'arrêter ici.
+	    En fait, <i>elle</i> ne voulait pas abandonner. Elle voulait avancer, avoir un rêve, une ambition, se surpasser, leur prouver qu'elle pouvait s'en sortir et qu'elle valait bien mieux que ce qu'ils pensaient tous.
+		</p>
+    </div>
+ <div class="lore-image slide-top">
+      <img src="images/lore5.jpg">
+    </div>
+  </div>
+<div class="lore-page right">
+  <div class="lore-image slide-top">
+      <img src="images/lore6.jpg">
+    </div>
+    <div class="lore-content">
+      <h2>L'espoir</h2>
+
+      <p>
+      841. Isyra est enfin devenue une jeune femme aux capacités de combat remarquable, se démarquant dans biens des domaines. <br>
+      Elle avait migré jusqu'à Epeilor, un lieu où elle se sentait bien plus à son aise, un endroit où elle pourrait peut-être enfin se construire.
+      La jeune fille était devenue bien plus indépendante et s'est toujours convaincue qu'elle n'avait besoin que d'elle même pour avancer... Mais était-ce vrai ? <br>
+      Et comment une fille qui semblait perdue aurait pu réussir un tel exploit ? En réalité, <i>Rena</i>, déesse de l’Amitié et des Héros, avait accompagné Isyra dans le passé jusqu'à ce qu'elle trouve un refuge, jusqu'à ce qu'elle soit en sécurité. 
+      C'était grâce à elle si Isyra a pu arriver jusqu'à cet endroit qui fut un renouveau pour elle, une occasion de réaliser un rêve, un but. Elle n'était que trop reconnaissante envers cette divinité, elle lui devait beaucoup.
+      Malheureusement, même avec une telle réussite, un tourment reste en elle : qui est-elle réellement ? Qu' <i>est</i> - elle ? 
+      Plus le temps passait, plus cette question la hantait et la consummait à petit feu.
+      </p>
+      <p>
+      De plus, quelque chose la dérangeait au quotidien, un sentiment qu'elle n'avait jamais eu avant cet incident, avant cette <i>renaissance</i>.<br>
+      Auparavant, Isyra n'avait aucun projet futur, elle comptait simplement vivre, voir où la vie la mènerait. Pourtant, dès lors de son réveil dans ce laboratoir abominable, un sentiment brûlait en elle, une ambition, un rêve qui prenait tout son esprit : exceller jusqu'au paroxysme de la perfection atteignable.<br>
+      Etait-ce un besoin de vengeance ? Le fait de grandir ? Un effet secondaire suite à cette "opération" ? Ou était-ce lié au sang de ce draconique ?<br>
+      Ce rêve lui appartient-elle ? <br>
+      Ou est-ce celui d'un autre ? <br>
+      </p>
+      <p>
+	  Peut-être a-t-elle toujours eu ce rêve ? Après tout, elle avait bien assassiné son oncle, est-ce un signe qu'elle était déjà prête à tout ? 
+	  Non, c'est plus compliqué, enfin, pour le moment. 
+	  A-t-elle le droit de continuer ainsi ? Le droit de prendre le rêve d'un autre ? <br>
+	  Pourtant, malgré toutes ses interrogations, malgré ce dégoût qui l'accompagnait chaque jour, une chose demeurait certaine.<br>
+Elle ne voulait pas l'abandonner, ce rêve qu'elle n'a jamais eu.<br>
+	Comment vivre sans un rêve ? Sans un but à atteindre ? <br>
+	  Ce rêve la torture.
+      </p>
+    </div>
+</section>
+
+<script>
+
+/* NAVBAR */
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+  if (window.scrollY > window.innerHeight * 0.7) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+
+});
+
+
+/* SCRAMBLE EFFECT */
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+document.querySelectorAll(".scramble").forEach(el => {
+
+  let interval = null;
+
+  el.addEventListener("mouseenter", () => {
+
+    let iteration = 0;
+    const originalText = el.dataset.text;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+
+      el.innerText = originalText
+        .split("")
+        .map((letter, index) => {
+
+          if (index < iteration) {
+            return originalText[index];
+          }
+
+          return letters[Math.floor(Math.random() * letters.length)];
+
+        })
+        .join("");
+
+      iteration += 1 / 3;
+
+      if (iteration >= originalText.length) {
+        clearInterval(interval);
+      }
+
+    }, 30);
+  });
+
+  el.addEventListener("mouseleave", () => {
+    clearInterval(interval);
+    el.innerText = el.dataset.text;
+  });
+
+});
+
+
+/* MENU GAME (clavier + souris synchronisés) */
+
+const menuItems = document.querySelectorAll(".menu-item");
+
+let current = 0;
+
+/* applique visuel */
+function updateMenu(index) {
+
+  menuItems.forEach(item => {
+    item.classList.remove("active");
+    item.classList.remove("hovered");
+  });
+
+  current = index;
+
+  menuItems[current].classList.add("active");
+  menuItems[current].classList.add("hovered");
+}
+
+/* init */
+updateMenu(0);
+
+/* souris */
+menuItems.forEach((item, index) => {
+
+  item.addEventListener("mouseenter", () => {
+    updateMenu(index);
+  });
+
+});
+
+/* clavier */
+document.addEventListener("keydown", (e) => {
+
+  if (
+    e.key !== "ArrowDown" &&
+    e.key !== "ArrowUp" &&
+    e.key !== "Enter"
+  ) return;
+
+  e.preventDefault();
+
+  if (e.key === "ArrowDown") {
+    updateMenu((current + 1) % menuItems.length);
+  }
+
+  if (e.key === "ArrowUp") {
+    updateMenu((current - 1 + menuItems.length) % menuItems.length);
+  }
+
+  if (e.key === "Enter") {
+    menuItems[current].click();
+  }
+
+});
+
+
+
+
+
+/* PIXEL SCROLL EFFECT */
+
+const canvas = document.getElementById("pixelCanvas");
+const ctx = canvas.getContext("2d");
+
+const img = new Image();
+img.src = "images/id2.png";
+
+img.onload = () => {
+  console.log("Image chargée :", img.width, img.height);
+
+  resizeCanvas();
+  drawPixelated();
+};
+
+img.onerror = () => {
+  console.error("Impossible de charger :", img.src);
+};
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+function drawPixelated() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const aboutSection = document.getElementById("about");
+  const rect = aboutSection.getBoundingClientRect();
+
+const centerTrigger = window.innerHeight / 2;
+
+let progress = (centerTrigger - rect.top) / centerTrigger;
+
+progress = Math.max(0, Math.min(progress, 1));
+
+  let pixelSize = 50 - Math.floor(progress * 49);
+  pixelSize = Math.max(1, pixelSize);
+
+  const maxWidth = canvas.width * 0.45;
+  const maxHeight = canvas.height * 0.75;
+
+  const scale = Math.min(
+    maxWidth / img.width,
+    maxHeight / img.height
+  );
+
+  const finalWidth = img.width * scale;
+  const finalHeight = img.height * scale;
+
+  const w = Math.max(1, Math.floor(finalWidth / pixelSize));
+  const h = Math.max(1, Math.floor(finalHeight / pixelSize));
+
+  const tempCanvas = document.createElement("canvas");
+  const tempCtx = tempCanvas.getContext("2d");
+
+  tempCanvas.width = w;
+  tempCanvas.height = h;
+
+  tempCtx.drawImage(img, 0, 0, w, h);
+
+  ctx.imageSmoothingEnabled = false;
+
+  const x = (canvas.width - finalWidth) / 2;
+  const y = (canvas.height - finalHeight) / 2;
+
+  ctx.drawImage(
+    tempCanvas,
+    0,
+    0,
+    w,
+    h,
+    x,
+    y,
+    finalWidth,
+    finalHeight
+  );
+
+  requestAnimationFrame(drawPixelated);
+}
+
+
+
+
+/* INIT */
+const slides = document.querySelectorAll(".slide");
+
+const apparences = [
+
+  {
+    title:"L'himaïde parfaite ?",
+    description:"Une silhouette fine, élancée, accompagnée d'une peau d'une blancheur éclatante, presque trop. Des iris écarlate, perçants, comme si son sang de Draconique venait proclâmer son existance au milieu de son physique presque pur d'himaïde digne de ce nom. Ses cheveux, eux, sont d'une souplesse comparable à des fils de soie sans parler de leur couleur séraphique tendant au blanc pure qu'Isyra ne se retient pas de teindre en noir quand l'envie - ou le besoin - lui prend."
+  },
+
+  {
+    title:"Un être biblique.",
+    description:"Sans tenir compte de ses yeux et de sa cicatrice malheureusement bien présente sous son oeil gauche, se prolongeant jusqu'à son nez, l'himaïde se fait souvent définir - que ce soit par les passants ou les personnes de son entourage - d'une envoyée des divinités de par son apparence douce et lumineuse, sans parler de sa voix et son caractère plus qu'apaisant au premier abord.Or, est-ce une vérité ? Aime-t-elle ces dires ? rien n'est certain, au fond, même elle n'en n'est peut-être pas certaine."
+  },
+
+  {
+    title:"L'armure n'est pas la seule à devoir être ornementée.",
+    description:"L'entraînement étant primordial depuis son enfance, cela n'est pas pour autant qu'Isyra négligerait son apparence. Ajouter des ornementation et bijoux, en argent de préférence, n'est pas une simple impulsion ; c'est aussi une façon de se sentir plus à l'aise, et peut-être d'embellir sa conscience ?"
+  },
+
+  {
+    title:"L'armure ne fait pas le guerrier.",
+    description:"Selon l'himaïde, peu importe la tenue, armée, protégée ou simplement du tissu, ce n'est pas sur ça qu'elle doit se reposer, mais sur ses propres capacités afin de se défendre.C'est cette même valeur chez elle qui fait qu'Isyra est d'apparence déjà très souble et, malgré sa corpulence très fine, tonique."
+  },
+
+  {
+    title:"La malédiction.",
+    description:"Isyra aurait pu être l'himaïde parfaite, si seulement un évènement facheux n'avait pas fait que la pauvre se retrouve avec du sang d'un Draconique inconnu d'elle. Depuis la présence de son sang dans son corps, un tatouage s'est formé sur son bras gauche, comme un sceau ou un fardeau. Ce tatouage semble parfois même vivant, comme si ce Draconique était toujours présent quelque part, jusqu'à donner vie à son armure, comme pour la hanter."
+  }
+
+];
+
+const title = document.getElementById("apparenceTitle");
+const desc = document.getElementById("apparenceDescription");
+let currentSlide = 0;
+function updateSlider(){
+
+slides.forEach((slide,index)=>{
+
+  const offset = index - currentSlide;
+
+  const brightness =
+    Math.max(0.4, 1 - Math.abs(offset) * 0.3);
+
+  slide.style.filter =
+    `brightness(${brightness})`;
+
+  const x = offset * 260;
+
+  const scale =
+    Math.max(0.7, 1 - Math.abs(offset) * 0.2);
+
+  const rotate =
+    offset * -30;
+
+  slide.style.transform =
+    `translate(-50%,-50%)
+     translateX(${x}px)
+     rotateY(${rotate}deg)
+     scale(${scale})`;
+
+  slide.style.opacity =
+    Math.max(0.1, 1 - Math.abs(offset) * 0.6);
+
+  slide.style.zIndex =
+    Math.round(100 - Math.abs(offset) * 10);
+
+});
+
+  title.textContent =
+    apparences[currentSlide].title;
+
+  desc.textContent =
+    apparences[currentSlide].description;
+}
+slides.forEach((slide,index)=>{
+
+  slide.addEventListener("click",()=>{
+
+    currentSlide = index;
+
+    updateSlider();
+
+  });
+
+});
+
+updateSlider();
+
+img.onload = () => {
+  resizeCanvas();
+  drawPixelated();
+};
+const panel2 = document.querySelector(".panel2");
+
+function animatePanel2(){
+
+  const rect = panel2.getBoundingClientRect();
+
+  const center =
+    window.innerHeight / 2;
+
+  if(
+    rect.top < center &&
+    rect.bottom > center
+  ){
+    panel2.classList.add("active");
+  }
+  else{
+    panel2.classList.remove("active");
+  }
+}
+
+window.addEventListener(
+  "scroll",
+  animatePanel2
+);
+
+animatePanel2();
+
+const puzzle = document.querySelector(".puzzle");
+const pieces = document.querySelectorAll(".piece");
+
+let completed = 0;
+
+let selected = null;
+let offsetX = 0;
+let offsetY = 0;
+
+/* POSITION DE DÉPART */
+
+function initPuzzle() {
+
+  const cx = puzzle.clientWidth / 2;
+  const cy = puzzle.clientHeight / 2;
+
+  const radius = 280;
+
+  pieces.forEach((piece, index) => {
+
+    const angle =
+      (index / pieces.length) * Math.PI * 2;
+
+    const startX =
+      cx + Math.cos(angle) * radius;
+
+    const startY =
+      cy + Math.sin(angle) * radius;
+
+    piece.style.left =
+      (startX - piece.offsetWidth / 2) + "px";
+
+    piece.style.top =
+      (startY - piece.offsetHeight / 2) + "px";
+
+  });
+
+}
+
+/* DRAG */
+
+pieces.forEach(piece => {
+
+  piece.addEventListener("mousedown", (e) => {
+
+    e.preventDefault();
+
+    if (piece.classList.contains("locked")) return;
+
+    selected = piece;
+
+    offsetX =
+      e.clientX - piece.offsetLeft;
+
+    offsetY =
+      e.clientY - piece.offsetTop;
+
+    piece.style.cursor = "grabbing";
+    piece.style.zIndex = "999";
+
+  });
+
+});
+
+/* DÉPLACEMENT */
+
+document.addEventListener("mousemove", (e) => {
+
+  if (!selected) return;
+
+  selected.style.left =
+    (e.clientX - offsetX) + "px";
+
+  selected.style.top =
+    (e.clientY - offsetY) + "px";
+
+});
+
+/* RELÂCHER */
+
+document.addEventListener("mouseup", () => {
+
+  if (!selected) return;
+
+const targetX =
+  puzzle.clientWidth / 2 -
+  selected.offsetWidth / 2;
+
+const targetY =
+  puzzle.clientHeight / 2 -
+  selected.offsetHeight / 2;
+
+  const currentX =
+    parseFloat(selected.style.left);
+
+  const currentY =
+    parseFloat(selected.style.top);
+
+  const distance =
+    Math.hypot(
+      currentX - targetX,
+      currentY - targetY
+    );
+const puzzleSound = new Audio("sounds/papoi.mp3");
+  /* AIMANTATION */
+
+  if (distance < 40) {
+
+    selected.style.left =
+      targetX + "px";
+
+    selected.style.top =
+      targetY + "px";
+
+    selected.classList.add("locked");
+
+    completed++;
+
+if (completed === pieces.length) {
+
+  alert("Papoi");
+
+  puzzleSound.play();
+
+}
+
+  }
+
+  selected.style.cursor = "grab";
+  selected.style.zIndex = "";
+
+  selected = null;
+
+});
+
+/* LANCEMENT */
+
+window.addEventListener("load", initPuzzle);
+
+const abilities =
+document.querySelectorAll(".ability");
+
+const combatContainer =
+document.querySelector(".combat-container");
+
+abilities.forEach(card=>{
+
+  card.addEventListener("click",()=>{
+
+    abilities.forEach(el=>
+      el.classList.remove("active")
+    );
+
+    card.classList.add("active");
+
+    combatContainer.classList.add("open");
+
+  });
+
+});
+
+document
+.querySelectorAll(".close-btn")
+.forEach(btn=>{
+
+  btn.addEventListener("click",e=>{
+
+    e.stopPropagation();
+
+    combatContainer.classList.remove("open");
+
+    document
+      .querySelector(".ability.active")
+      ?.classList.remove("active");
+
+  });
+
+});
+const loreBlocks =
+document.querySelectorAll(".lore-image");
+
+const observer =
+new IntersectionObserver((entries)=>{
+
+  entries.forEach(entry=>{
+
+    if(entry.isIntersecting){
+
+      entry.target.classList.add("visible");
+
+    }
+
+  });
+
+},{
+  threshold:0.45
+});
+
+loreBlocks.forEach(block=>{
+  observer.observe(block);
+});
+window.addEventListener("load", () => {
+    alert(" TW : si vous êtes sujet.te/sensible aux tourments psychologique, le sang, la mort, la violence etc, il vous est déconseillé de lire cette fiche qui peut vous être sensible. ");
+});
+</script>
+
+</body>
+</html>
