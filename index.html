@@ -1393,6 +1393,64 @@ transform:translateY(600px);
   }
 
 }
+@media (max-width: 768px){
+
+  /* Désactive les effets hover */
+  .memory.large:hover,
+  .ability:hover,
+  .menu-item:hover{
+    transform:none;
+  }
+
+  /* Images mémoire */
+  .memory-space{
+    position:relative;
+    top:auto;
+    height:auto;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+  }
+
+  .memory{
+    position:relative !important;
+    left:auto !important;
+    top:auto !important;
+    animation:none;
+  }
+
+  .memory.large,
+  .memory.medium,
+  .memory.small{
+    width:45%;
+    opacity:1;
+  }
+
+  /* Combat */
+  .combat-container{
+    flex-direction:column;
+    height:auto;
+  }
+
+  .ability{
+    min-height:250px;
+  }
+
+  /* Navbar */
+  .navbar nav{
+    justify-content:center;
+    font-size:0.9rem;
+  }
+
+  /* Canvas identité */
+  #pixelCanvas{
+    height:60vh;
+  }
+
+}
 </style>
 </head>
 
