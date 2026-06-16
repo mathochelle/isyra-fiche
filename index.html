@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kurozova Isyra</title>
 
 <style>
@@ -1280,7 +1281,118 @@ transform:translateY(600px);
 .lore-page .lore-content{
   width:40%;
 }
+/* ==========================
+   MOBILE
+========================== */
 
+@media (max-width: 768px) {
+
+  .game-title{
+    font-size: 2rem;
+  }
+
+  .menu-item{
+    font-size: 1.2rem;
+  }
+
+  section{
+    font-size: 1.5rem;
+  }
+
+  /* personnalité */
+
+  .personality-wrapper{
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .personality-image,
+  .personality-text{
+    width: 90%;
+  }
+
+  /* apparence */
+
+  .apparence-wrapper{
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .apparence-slider{
+    width: 100%;
+    height: 350px;
+  }
+
+  .apparence-text{
+    width: 90%;
+  }
+
+  /* puzzle */
+
+  .puzzle{
+    width: 100%;
+    height: 500px;
+  }
+
+  .piece{
+    max-width: 120px;
+  }
+
+  /* combat */
+
+  .skill-image-wrapper{
+    display: none;
+  }
+
+  .detail{
+    padding: 80px 20px;
+  }
+
+  .detail h1{
+    font-size: 2rem;
+  }
+
+  .detail p{
+    font-size: 1rem;
+  }
+
+  .number{
+    font-size: 4rem;
+  }
+
+  /* lore */
+
+  .lore-page,
+  .lore-page.right,
+  .lore-page.center{
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .lore-content,
+  .lore-image{
+    width: 90%;
+  }
+
+  .lore-content h2{
+    font-size: 2rem;
+  }
+
+  /* navbar */
+
+  .navbar{
+    padding: 15px;
+  }
+
+  .navbar nav{
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+}
 </style>
 </head>
 
