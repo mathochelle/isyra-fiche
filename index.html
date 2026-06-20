@@ -242,8 +242,11 @@ section {
   width:500px;
 
   opacity:0;
+  transform:translateY(600px);
 
-transform:translateY(600px);
+  font-size:1rem;
+  line-height:1.8;
+  color:white;
 
   transition:
     transform 1s ease,
@@ -462,12 +465,17 @@ transform:translateY(600px);
 .apparence-wrapper{
   display:flex;
   align-items:center;
-  gap:100px;
+  justify-content:center;
+
+  gap:clamp(80px,8vw,180px);
+
+  width:min(1400px,90vw);
+  margin:auto;
 }
 
 .apparence-text{
-  width:350px;
-  color:white;
+  width:min(400px,30vw);
+  flex-shrink:0;
 }
 
 .apparence-text h2{
@@ -481,10 +489,8 @@ transform:translateY(600px);
 }
 
 .apparence-slider{
-  position:relative;
-  width:900px;
+  width:min(850px,50vw);
   height:500px;
-  perspective:1500px;
 }
 
 .slide{
@@ -1013,9 +1019,9 @@ transform:translateY(600px);
 }
 
 .detail p{
-  font-size:1.2rem;
+  font-size:clamp(0.9rem, 1vw, 1.1rem);
   line-height:1.8;
-  max-width:900px;
+  max-width:55%;
 }
 
 /* ==========================
@@ -1088,13 +1094,14 @@ transform:translateY(600px);
 
   position:absolute;
 
-  right:8vw;
+  right:clamp(80px,8vw,180px);
+
   top:50%;
 
   transform:
     translateY(-50%);
 
-  width:32vw;
+width:min(25vw,500px);
 
   height:auto;
 
@@ -1102,6 +1109,9 @@ transform:translateY(600px);
 }
 .ability.active .skill-image-main{
   opacity:0;
+}
+.detail p{
+  max-width:55%;
 }
 
 /* description visible */
@@ -1184,7 +1194,9 @@ transform:translateY(600px);
 }
 
 .lore-page{
-  height:250vh;
+  min-height:auto;
+  padding:120px 8vw;
+  height:auto;
 
   display:flex;
   align-items:center;
@@ -1284,6 +1296,29 @@ transform:translateY(600px);
 /* ==========================
    MOBILE
 ========================== */
+@media (max-width:1400px){
+
+  .apparence-wrapper{
+    flex-direction:column;
+  }
+
+  .personality-wrapper{
+    flex-direction:column;
+  }
+
+  .lore-page,
+  .lore-page.right,
+  .lore-page.center{
+    flex-direction:column;
+    gap:50px;
+  }
+
+  .lore-content,
+  .lore-image{
+    width:90%;
+  }
+
+}
 
 @media (max-width: 768px) {
 
@@ -1307,27 +1342,17 @@ transform:translateY(600px);
     padding: 20px;
   }
 
-  .personality-image,
-  .personality-text{
-    width: 90%;
-  }
+.personality-image{
+  width:min(400px, 100%);
+}
 
-  /* apparence */
+.personality-text{
+  width:min(500px, 100%);
+}
 
-  .apparence-wrapper{
-    flex-direction: column;
-    gap: 30px;
-    padding: 20px;
-  }
-
-  .apparence-slider{
-    width: 100%;
-    height: 350px;
-  }
-
-  .apparence-text{
-    width: 90%;
-  }
+.apparence-slider{
+  width:min(900px, 100%);
+}
 
   /* puzzle */
 
@@ -1450,6 +1475,18 @@ transform:translateY(600px);
     height:60vh;
   }
 
+}
+*{
+  box-sizing:border-box;
+}
+
+img{
+  max-width:100%;
+  height:auto;
+}
+
+body{
+  overflow-x:hidden;
 }
 </style>
 </head>
